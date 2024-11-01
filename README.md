@@ -5,24 +5,13 @@
 This project is an Admin Dashboard created using Next.js, Tailwind CSS, Zustand for state management, and Ant Design (antd) for UI components. The application integrates with the GitHub REST API to provide users with a seamless experience in managing their repositories and user settings.
 
 ## Features
-
-- **Sidebar Navigation:** The application features a sidebar that provides easy access to various sections, including:
-  - **Home:** Displays the home page.
-  - **Organization Rep:** Access to organization representatives.
-  - **Repositories:** A list of repositories linked to the user account.
-  - **Starred Repos:** A collection of repositories that the user has starred.
-  - **User Settings:** Allows users to adjust their settings.
-
-### Sidebar Structure
-
-The sidebar contains the following links:
-
-- **Home** (Key: 1)
-- **Organization Rep** (Key: 10)
-- **Divider**
-- **Repositories** (Key: 2)
-- **Starred Repos** (Key: 3)
-- **User Settings** (Key: 4)
+## Sidebar Navigation
+The application features a sidebar that provides easy access to various sections, including:
+- **Home**: Displays the home page with all repositories, including starred and unstarred ones. Users can also add topics to repositories and update existing ones.
+- **Organization Rep**: Access to organization representatives.
+- **Repositories**: A list of repositories linked to the user account.
+- **Starred Repos**: A collection of repositories that the user has starred.
+- **User Settings**: Allows users to adjust their settings.
 
 ## Navbar
 
