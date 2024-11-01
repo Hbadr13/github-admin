@@ -9,8 +9,8 @@ interface ExtendedSession extends Session {
 
 function Page() {
   const { data: session } = useSession() as { data: ExtendedSession | null };
-  const [userData, setUserData] = useState<any>(null); // State to hold user data
-  const [loading, setLoading] = useState(true); // Loading state
+  const [userData, setUserData] = useState<any>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -28,11 +28,11 @@ function Page() {
           }
 
           const data = await response.json();
-          setUserData(data); // Set the user data
+          setUserData(data);
         } catch (error) {
           console.error("Error fetching user data:", error);
         } finally {
-          setLoading(false); // Stop loading
+          setLoading(false);
         }
       }
     };
@@ -45,7 +45,7 @@ function Page() {
       <div className="flex justify-center items-center h-screen">
         <div className="loader"></div>
       </div>
-    ); // Loading state
+    );
   }
 
   if (!userData) {
