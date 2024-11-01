@@ -44,9 +44,10 @@ To run the application, you need to set up the following environment variables i
 
 1. **Clone the Repository:**
    ```bash
-   git clone <repository-url>
-   cd <repository-folder>
+   git clone https://github.com/Hbadr13/github-admin.git
+   cd github-admin
    npm install
+   npm run dev
 
 **Access the Application:**
 Open your browser and go to http://localhost:3000.
