@@ -15,7 +15,10 @@ function AppHeader() {
       </div>
       <div>Email: {session.user?.email || "Not provided"}</div>
       <div>Username: {session.user?.username || "Not provided"}</div>
-      <div>Profile URL: <a href={session.user?.profileUrl} target="_blank" rel="noopener noreferrer">{session.user?.profileUrl || "Not provided"}</a></div>
+      {
+
+        session.user?.profileUrl && <div>Profile URL: <a href={session.user?.profileUrl} target="_blank" rel="noopener noreferrer">{session.user?.profileUrl || "Not provided"}</a></div>
+      }
       <div>Bio: {session.user?.bio || "Not provided"}</div>
       <Button type="primary" onClick={() => signOut()} className="mt-2">
         Logout

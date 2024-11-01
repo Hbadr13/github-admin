@@ -19,7 +19,7 @@ export default function OrgRepositories() {
         if (!orgName) return;
         setLoading(true);
         setError(null);
-        setRepos([])
+        setRepos([]);
         try {
             const response = await fetch(
                 `https://api.github.com/orgs/${orgName}/repos`
@@ -30,7 +30,11 @@ export default function OrgRepositories() {
             const data = await response.json();
             setRepos(data);
         } catch (err) {
-            setError(err.message);
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError("An unexpected error occurred.");
+            }
         } finally {
             setLoading(false);
         }
@@ -44,10 +48,8 @@ export default function OrgRepositories() {
         <Layout>
             <Content className="p-5 md:p-16">
                 <Title level={2}>Search for Organization Repositories</Title>
-                <div className="  md:space-x-2">
-
+                <div className="md:space-x-2">
                     <Input
-
                         placeholder="Enter organization name (e.g., adobe)"
                         value={orgName}
                         onChange={(e) => setOrgName(e.target.value)}
@@ -70,7 +72,7 @@ export default function OrgRepositories() {
                         Array.from({ length: 6 }).map((_, index) => <ShimmerPlaceholder key={index} />)
                     ) : (
                         filteredRepos.map((repo) => (
-                            <div key={repo.id} >
+                            <div key={repo.id}>
                                 <Card className="hover:shadow-lg transition" bordered={false}>
                                     <Link target="_blank" href={'https://github.com/' + repo.owner.login + '/' + repo.name} className="text-lg font-bold text-blue-600">{repo.name}</Link>
                                     <p className="text-gray-600 mt-2">{repo.description || "No description available"}</p>
@@ -82,10 +84,6 @@ export default function OrgRepositories() {
                                         <p>🕒 Last updated: {new Date(repo.updated_at).toLocaleDateString()}</p>
                                         <p>🗓 Created on: {new Date(repo.created_at).toLocaleDateString()}</p>
                                     </div>
-
-                                    {/* <Button className="mt-4" onClick={() => openDetailModal(repo)}>
-                                        More info
-                                    </Button> */}
                                 </Card>
                             </div>
                         ))

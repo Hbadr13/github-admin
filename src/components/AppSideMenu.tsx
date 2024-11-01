@@ -1,14 +1,10 @@
-
-
-
-
 "use client";
 import { Menu, Button } from "antd";
 import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { SearchOutlined, HomeOutlined, GithubOutlined, StarOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons"; // Import icons
+import { SearchOutlined, HomeOutlined, GithubOutlined, StarOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons";
 
 export default function AppSideMenu() {
   const pathname = usePathname();
@@ -23,7 +19,7 @@ export default function AppSideMenu() {
       setSelectedKey(["3"]);
     } else if (pathname.startsWith("/settings")) {
       setSelectedKey(["4"]);
-    } else if (pathname.startsWith("/settings")) {
+    } else if (pathname.startsWith("/organization-reps")) {
       setSelectedKey(["10"]);
     } else {
       setSelectedKey([]);
@@ -54,7 +50,11 @@ export default function AppSideMenu() {
 
   return (
     <div>
-      <Menu mode="inline" items={menuItems} selectedKeys={selectedKey} />
+      <Menu mode="inline" selectedKeys={selectedKey}>
+        {menuItems.map(item =>
+          item.type === "divider" ? <Menu.Divider key={Math.random()} /> : <Menu.Item key={item.key}>{item.label}</Menu.Item>
+        )}
+      </Menu>
     </div>
   );
 }

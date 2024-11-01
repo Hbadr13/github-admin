@@ -51,7 +51,8 @@ function Page() {
   if (!userData) {
     return (
       <div className="p-10">
-        <h2 className="text-3xl font-semibold">No user data available.</h2> // No data state
+        <h2 className="text-3xl font-semibold">No user data available.</h2>
+        {/* No data state */}
       </div>
     );
   }

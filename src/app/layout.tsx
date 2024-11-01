@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     setDrawerVisible(false);
   };
 
-  const isMobile = width < 700;
+  const isMobile = (width ?? 0) < 700;
 
   return (
     <html lang="en">
