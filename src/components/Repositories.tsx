@@ -167,7 +167,7 @@ const Repositories = () => {
     const uniqueLanguages = Array.from(new Set(repositories.map(repo => repo.language).filter(lang => lang)));
     const openDetailModal = (repo: Repository) => {
         setSelectedRepo(repo);
-        setIsRepoModalVisible(true); // Use the same modal for details
+        setIsRepoModalVisible(true);
     };
     const totalPages = Math.ceil(filteredRepos.length / itemsPerPage);
     const currentRepos = filteredRepos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);

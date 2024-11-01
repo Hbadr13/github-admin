@@ -18,7 +18,7 @@ const AuthGuard: React.FC<{ children: React.ReactNode }> = ({ children }) => {
         if (session && pathname === "/login") {
             router.push("/");
         }
-    }, [session, status, router]);
+    }, [session, status, router, pathname]);
 
     if (status === "loading") {
         return <div>Loading...</div>;

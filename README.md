@@ -1,36 +1,52 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Admin Dashboard
 
-## Getting Started
+## Project Overview
 
-First, run the development server:
+This project is an Admin Dashboard created using Next.js, Tailwind CSS, Zustand for state management, and Ant Design (antd) for UI components. The application integrates with the GitHub REST API to provide users with a seamless experience in managing their repositories and user settings.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Features
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Sidebar Navigation:** The application features a sidebar that provides easy access to various sections, including:
+  - **Home:** Displays the home page.
+  - **Organization Rep:** Access to organization representatives.
+  - **Repositories:** A list of repositories linked to the user account.
+  - **Starred Repos:** A collection of repositories that the user has starred.
+  - **User Settings:** Allows users to adjust their settings.
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+### Sidebar Structure
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+The sidebar contains the following links:
 
-## Learn More
+- **Home** (Key: 1)
+- **Organization Rep** (Key: 10)
+- **Divider**
+- **Repositories** (Key: 2)
+- **Starred Repos** (Key: 3)
+- **User Settings** (Key: 4)
 
-To learn more about Next.js, take a look at the following resources:
+## Navbar
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application also includes a navbar that displays the logged-in user's information, enhancing the overall user experience.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Technologies Used
 
-## Deploy on Vercel
+- **Next.js:** For server-side rendering and building the React application.
+- **Tailwind CSS:** For styling the components and ensuring a responsive design.
+- **Zustand:** For state management, allowing for a simpler and more efficient way to manage application state.
+- **Ant Design (antd):** For a robust set of UI components that provide a modern and sleek look.
+- **GitHub REST API:** For integrating and managing GitHub repositories and user data.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Environment Variables
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To run the application, you need to set up the following environment variables in a `.env` file at the root of your project:
+
+
+
+1. **Clone the Repository:**
+   ```bash
+   git clone <repository-url>
+   cd <repository-folder>
+   npm install
+
+**Access the Application:**
+Open your browser and go to http://localhost:3000.

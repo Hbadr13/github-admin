@@ -1,5 +1,4 @@
 "use client"
-// pages/org-repositories.tsx
 
 import { useEffect, useState } from "react";
 import { Layout, List, Typography, Spin, Input, Button, Card } from "antd";
@@ -17,9 +16,9 @@ export default function OrgRepositories() {
     const [searchTerm, setSearchTerm] = useState<string>("");
 
     const handleSearch = async () => {
-        if (!orgName) return; // Don't search if no organization name is provided
+        if (!orgName) return;
         setLoading(true);
-        setError(null); // Reset error state
+        setError(null);
         setRepos([])
         try {
             const response = await fetch(
@@ -37,7 +36,6 @@ export default function OrgRepositories() {
         }
     };
 
-    // Filter repositories based on the search term
     const filteredRepos = repos.filter(repo =>
         repo.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
