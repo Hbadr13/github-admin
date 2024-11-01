@@ -24,7 +24,7 @@ interface Repository {
 interface ExtendedSession extends Session {
     access_token?: string;
 }
-const ShimmerPlaceholder = () => (
+export const ShimmerPlaceholder = () => (
     <div className="p-4 bg-gray-100 rounded-lg animate-pulse">
         <div className="h-6 bg-gray-200/50 rounded mb-2"></div>
         <div className="h-4 bg-gray-200/50 rounded mb-2"></div>
@@ -46,6 +46,8 @@ const Repositories = () => {
     const [dateFilter, setDateFilter] = useState<string>("");
     const [error, setError] = useState<string | null>(null);
     const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isRepoModalVisible, setIsRepoModalVisible] = useState(false);
+    const [selectedRepo, setSelectedRepo] = useState<Repository | null>(null); // State for selected repository
 
     useEffect(() => {
         const fetchRepos = async () => {
@@ -163,23 +165,13 @@ const Repositories = () => {
     );
 
     const uniqueLanguages = Array.from(new Set(repositories.map(repo => repo.language).filter(lang => lang)));
-
+    const openDetailModal = (repo: Repository) => {
+        setSelectedRepo(repo);
+        setIsRepoModalVisible(true); // Use the same modal for details
+    };
     const totalPages = Math.ceil(filteredRepos.length / itemsPerPage);
     const currentRepos = filteredRepos.slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
 
-    if (!session) {
-        return (
-            <div className="flex flex-col items-center space-y-4 mt-8">
-                <button
-                    onClick={() => signIn("github")}
-                    className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition"
-                >
-                    Sign in with GitHub
-                </button>
-                <p className="text-gray-700">Please log in to view your repositories.</p>
-            </div>
-        );
-    }
 
     return (
         <div className="p-8 font-medium">
@@ -202,7 +194,7 @@ const Repositories = () => {
                     Array.from({ length: 6 }).map((_, index) => <ShimmerPlaceholder key={index} />)
                 ) : (
                     currentRepos.map((repo) => (
-                        <div key={repo.id}>
+                        <div key={repo.id} >
                             <Card className="hover:shadow-lg transition" bordered={false}>
                                 <Link target="_blank" href={'https://github.com/' + repo.owner.login + '/' + repo.name} className="text-lg font-bold text-blue-600">{repo.name}</Link>
                                 <p className="text-gray-600 mt-2">{repo.description || "No description available"}</p>
@@ -217,8 +209,11 @@ const Repositories = () => {
                                 <Button className="mt-4 mr-2" type="primary" onClick={() => toggleStar(repo)}>
                                     {repo.starred ? "Unstar" : "Star"}
                                 </Button>
-                                <Button className="mt-4" onClick={() => openEditModal(repo)}>
+                                <Button className="mt-4 mr-2" onClick={() => openEditModal(repo)}>
                                     Edit
+                                </Button>
+                                <Button className="mt-4" onClick={() => openDetailModal(repo)}>
+                                    More info
                                 </Button>
                             </Card>
                         </div>
@@ -233,7 +228,26 @@ const Repositories = () => {
                 pageSize={itemsPerPage}
                 onChange={(page) => setCurrentPage(page)}
             />
-
+            <Modal
+                title={selectedRepo ? selectedRepo.name : "Repository Details"}
+                visible={isRepoModalVisible}
+                onCancel={() => setIsRepoModalVisible(false)}
+                footer={null}
+            >
+                {selectedRepo && (
+                    <div>
+                        <h3 className="text-lg font-bold">Description:</h3>
+                        <p>{selectedRepo.description || "No description available."}</p>
+                        <h3 className="text-lg font-bold mt-4">Details:</h3>
+                        <p>Stars: {selectedRepo.stargazers_count}</p>
+                        <p>Forks: {selectedRepo.forks_count}</p>
+                        <p>Created At: {new Date(selectedRepo.created_at).toLocaleDateString()}</p>
+                        <p>Updated At: {new Date(selectedRepo.updated_at).toLocaleDateString()}</p>
+                        <p>Language: {selectedRepo.language || "N/A"}</p>
+                        <p>Topics: {selectedRepo.topics.length > 0 ? selectedRepo.topics.join(", ") : "No topics available"}</p>
+                    </div>
+                )}
+            </Modal>
             <Modal
                 title="Edit Repository"
                 visible={isModalVisible}
@@ -260,3 +274,5 @@ const Repositories = () => {
 };
 
 export default Repositories;
+
+

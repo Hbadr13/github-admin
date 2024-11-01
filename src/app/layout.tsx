@@ -174,7 +174,7 @@ import AppSideMenu from "../components/AppSideMenu";
 import React, { useState } from "react";
 import { MenuOutlined } from "@ant-design/icons"; // Import Menu icon
 import { usePathname } from "next/navigation"; // Import usePathname
-import useWindowSize from "./hook/useWindowSize";
+import useWindowSize from "../hook/useWindowSize";
 
 const inter = Inter({ subsets: ["latin"] });
 

@@ -61,7 +61,7 @@ import { signOut } from "next-auth/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { HomeOutlined, GithubOutlined, StarOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons"; // Import icons
+import { SearchOutlined, HomeOutlined, GithubOutlined, StarOutlined, SettingOutlined, LogoutOutlined } from "@ant-design/icons"; // Import icons
 
 export default function AppSideMenu() {
   const pathname = usePathname();
@@ -76,6 +76,8 @@ export default function AppSideMenu() {
       setSelectedKey(["3"]);
     } else if (pathname.startsWith("/settings")) {
       setSelectedKey(["4"]);
+    } else if (pathname.startsWith("/settings")) {
+      setSelectedKey(["10"]);
     } else {
       setSelectedKey([]);
     }
@@ -87,6 +89,7 @@ export default function AppSideMenu() {
 
   const menuItems = [
     { label: <Link href="/"><HomeOutlined /> Home</Link>, key: "1" },
+    { label: <Link href="/organization-reps"><SearchOutlined /> Organization Rep</Link>, key: "10" },
     { type: "divider" },
     { label: <Link href="/repositories"><GithubOutlined /> Repositories</Link>, key: "2" },
     { label: <Link href="/starred-repositories"><StarOutlined /> Starred Repos</Link>, key: "3" },
