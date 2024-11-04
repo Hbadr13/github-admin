@@ -174,7 +174,7 @@ const Repositories = () => {
 
 
     return (
-        <div className="p-8 font-medium">
+        <div className="p-5 md:p-8 md:ml-2 font-medium">
             <h2 className="text-xl font-semibold text-gray-800 mb-4">Your Repositories</h2>
 
             <div className="mb-4 flex flex-col md:flex-row md:space-x-4">

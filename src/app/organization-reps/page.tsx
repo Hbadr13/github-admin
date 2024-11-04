@@ -43,7 +43,7 @@ export default function OrgRepositories() {
     const filteredRepos = repos.filter(repo =>
         repo.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
-
+    console.log('hello')
     return (
         <Layout>
             <Content className="p-5 md:p-16">

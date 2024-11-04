@@ -18,7 +18,7 @@ const MyComponent = () => {
   return (
     <div className="">
 
-      <div className="p-8">
+      <div className="md:ml-5 p-8">
         <h1 className="text-2xl font-semibold text-gray-800">Welcome, {session.user?.name}</h1>
 
         <nav className="mt-2 font-semibold">
