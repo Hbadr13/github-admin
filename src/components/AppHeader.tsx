@@ -7,6 +7,8 @@ function AppHeader() {
   const { data: session } = useSession();
   if (!session) return null;
 
+
+  
   const content = () => (
     <div className="flex flex-col p-4">
       <div className="flex items-center mb-2">
